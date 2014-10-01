@@ -3,6 +3,9 @@ package json;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
+/**
+ * A getter method.
+ */
 public class PropertyAccessor extends Property<Method> {
 
   public PropertyAccessor(Method method) {

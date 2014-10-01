@@ -1,5 +1,9 @@
 package json;
 
+/**
+ * A {@link Jsonifier} that uses reflection.
+ * @param <T> the type of instance to marshal.
+ */
 public class ReflectionJsonifier<T> implements Jsonifier<T> {
   private final ClassProperties classProperties;
 

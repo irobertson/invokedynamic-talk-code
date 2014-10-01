@@ -3,6 +3,10 @@ package json;
 import java.lang.reflect.AccessibleObject;
 import java.lang.reflect.Member;
 
+/**
+ * A field or getter method.
+ * @param <E>
+ */
 public abstract class Property<E extends AccessibleObject & Member> {
   protected final E element;
   private final String name;

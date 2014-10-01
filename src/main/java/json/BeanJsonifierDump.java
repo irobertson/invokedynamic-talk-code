@@ -2,6 +2,13 @@ package json;
 
 import org.objectweb.asm.*;
 
+/**
+ * Result of running
+ * <pre>
+ *   java -classpath asm-all-5.0.3.jar org.objectweb.asm.util.ASMifier target/classes/json/BeanJsonifier
+ * </pre>
+ * followed by modest readability refactorings.
+ */
 public class BeanJsonifierDump implements Opcodes {
 
   public static byte[] dump() throws Exception {

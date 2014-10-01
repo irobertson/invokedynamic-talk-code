@@ -19,9 +19,10 @@ import org.openjdk.jmh.annotations.Warmup;
 @State(Scope.Benchmark)
 @BenchmarkMode(Mode.AverageTime)
 @OutputTimeUnit(TimeUnit.NANOSECONDS)
-//@Fork(value = 1, warmups = 0)
-//@Measurement(iterations=5)
-//@Warmup(iterations = 5)
+// Hotspot seems to do all its optimizations pretty quickly, so let's save some time.
+@Fork(value = 1, warmups = 0)
+@Measurement(iterations=5)
+@Warmup(iterations = 5)
 public class JsonBenchmark {
   private Jsonifier<Bean> handBeanMarshaller = new BeanJsonifier();
   private Jsonifier<Bean> reflectionBeanMarshaller = ReflectionJsonifierFactory.createReflectionJsonifier(Bean.class);
@@ -32,32 +33,32 @@ public class JsonBenchmark {
   private Jsonifier<BiggerBean> reflectionBiggerBeanMarshaller = ReflectionJsonifierFactory.createReflectionJsonifier(BiggerBean.class);
   private Jsonifier<BiggerBean> indyBiggerBeanMarshaller = JsonifierIndyFactory.createReflectionMarshaller(BiggerBean.class);
 
-//  @Benchmark
+  @Benchmark
   public String beanReflection() throws Exception {
     return reflectionBeanMarshaller.marshal(getBean());
   }
 
-//  @Benchmark
+  @Benchmark
   public String beanHandCoded() throws Exception {
     return handBeanMarshaller.marshal(getBean());
   }
 
-//  @Benchmark
+  @Benchmark
   public String beanFactoryIndy() throws Exception {
     return indyBeanMarshaller.marshal(getBean());
   }
 
-//  @Benchmark
+  @Benchmark
   public String biggerBeanReflection() throws Exception {
     return reflectionBiggerBeanMarshaller.marshal(getBiggerBean());
   }
 
-//  @Benchmark
+  @Benchmark
   public String biggerBeanHandCoded() throws Exception {
     return handBiggerBeanMarshaller.marshal(getBiggerBean());
   }
 
-//  @Benchmark
+  @Benchmark
   public String biggerBeanHandDump() throws Exception {
     return dumpBiggerBeanMarshaller.marshal(getBiggerBean());
   }
@@ -83,6 +84,8 @@ public class JsonBenchmark {
   }
 
   private Bean[] beans = {
+    // for reasons I do not yet understand, if we don't have at least one instance of Bean where at least one of
+    // the two field-accessed values are null, then our benchmark runs over three times slower.
     new Bean(null, "goodbye"),
     new Bean("hello", "goodbye"),
     new Bean("up", "down"),
@@ -91,7 +94,7 @@ public class JsonBenchmark {
   private BiggerBean[] biggerBeans = {
     // for reasons I do not yet understand, if we don't have at least one instance of BiggerBean where at least one of
     // the two field-accessed values are null, then our benchmark runs over three times slower.
-//    new BiggerBean("hello", "goodbye", null, "bye"),
+    new BiggerBean("hello", "goodbye", null, "bye"),
 
     new BiggerBean("hello", "hi", "goodbye", "bye"),
     new BiggerBean("the", "quick", "brown", "fox"),

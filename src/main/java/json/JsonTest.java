@@ -1,5 +1,8 @@
 package json;
 
+/**
+ * Simple class to demonstrate our various Jsonifier implementations.
+ */
 public class JsonTest {
   @Json("foo")
   private int i = 4;

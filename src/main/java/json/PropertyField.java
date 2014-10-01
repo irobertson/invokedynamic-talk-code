@@ -2,6 +2,9 @@ package json;
 
 import java.lang.reflect.Field;
 
+/**
+ * An instance field.
+ */
 public class PropertyField extends Property<Field> {
   public PropertyField(Field propertyField) {
     super(propertyField);

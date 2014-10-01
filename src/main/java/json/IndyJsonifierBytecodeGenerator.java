@@ -14,6 +14,9 @@ import org.objectweb.asm.MethodVisitor;
 import org.objectweb.asm.Type;
 import org.objectweb.asm.util.CheckClassAdapter;
 
+/**
+ * Bytecode generator for a {@link Jsonifier} that uses invokeDynamic to access fields and methods.
+ */
 public class IndyJsonifierBytecodeGenerator {
   private final static AtomicInteger counter = new AtomicInteger();
   private final Class<?> jsonClass;

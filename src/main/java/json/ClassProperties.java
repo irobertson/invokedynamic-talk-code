@@ -7,6 +7,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.function.Function;
 
+/**
+ * The @{@link Json}-annotated properties of a class.
+ */
 public class ClassProperties {
   private final List<Property<?>> properties = new ArrayList<>();
 

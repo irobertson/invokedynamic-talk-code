@@ -7,6 +7,9 @@ import java.lang.invoke.MethodType;
 import org.objectweb.asm.*;
 import org.objectweb.asm.util.CheckClassAdapter;
 
+/**
+ * Conversion of {@link BeanJsonifierDump} to use invokeDynamic.
+ */
 public class BeanJsonifierIndyDump implements Opcodes {
 
   public static byte[] dump() throws Exception {

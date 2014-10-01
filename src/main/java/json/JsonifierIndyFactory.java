@@ -1,5 +1,8 @@
 package json;
 
+/**
+ * Factory for creating {@link Jsonifier}s using {@link IndyJsonifierBytecodeGenerator}
+ */
 public class JsonifierIndyFactory {
 
   @SuppressWarnings("unchecked")
